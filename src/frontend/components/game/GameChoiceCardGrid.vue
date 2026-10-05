@@ -66,7 +66,7 @@ function choiceColor(choice: T) {
 </script>
 
 <template>
-  <v-row class="game-choice-grid" justify="center" dense>
+  <v-row class="game-choice-grid" justify="center" no-gutters>
     <v-col
       v-for="choice in choices"
       :key="choice.id"
@@ -102,8 +102,17 @@ function choiceColor(choice: T) {
 </template>
 
 <style scoped>
-.game-choice-grid {
-  row-gap: 0.75rem;
+/* Gap between neighbouring gaze targets. Eye-tracking noise makes a gaze dot
+   drift into the next card when cards sit a few pixels apart (gaze audit: 8px). */
+.v-row.game-choice-grid {
+  --choice-gap: clamp(1.75rem, 3vmin, 2.5rem);
+
+  row-gap: var(--choice-gap);
+  margin-inline: calc(var(--choice-gap) / -2);
+}
+
+.v-row.game-choice-grid > [class*="v-col"] {
+  padding-inline: calc(var(--choice-gap) / 2);
 }
 
 .game-choice-grid__cell--hinted {

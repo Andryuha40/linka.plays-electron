@@ -54,7 +54,7 @@ const gridStyle = computed(() => ({
   "--choice-grid-compact-size": props.compactSize,
   "--choice-grid-offset": props.gridOffset,
   "--choice-grid-width-factor": props.widthFactor,
-  "--choice-grid-height-size": `calc((100vh - ${props.gridOffset} - ${(rows.value.length - 1) * 0.625}rem) / ${rows.value.length})`,
+  "--choice-grid-height-size": `calc((100vh - ${props.gridOffset} - ${rows.value.length - 1} * var(--choice-grid-gap)) / ${rows.value.length})`,
 }));
 </script>
 
@@ -90,9 +90,13 @@ const gridStyle = computed(() => ({
 </template>
 
 <style scoped>
+/* Gap between neighbouring gaze targets: with 10px the gaze dot drifted onto
+   the next key ("смотришь на галочку, нажимается ноль"). */
 .square-choice-grid {
+  --choice-grid-gap: clamp(1.75rem, 3vmin, 2.5rem);
+
   display: grid;
-  gap: 0.625rem;
+  gap: var(--choice-grid-gap);
   justify-content: center;
   inline-size: 100%;
 }
@@ -105,7 +109,7 @@ const gridStyle = computed(() => ({
   );
 
   display: grid;
-  gap: 0.625rem;
+  gap: var(--choice-grid-gap);
   grid-template-columns: repeat(var(--choice-count), var(--choice-size));
   justify-content: center;
 }
