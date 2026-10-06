@@ -9,6 +9,7 @@ import { useGamePromptAudio } from "../../composables/useGamePromptAudio";
 import { useGameSessionFor } from "../../composables/useGameSessionFor";
 import { createStandardGameFeedback } from "../../core/gameFeedbackAudio";
 import { resolveMenuRoute } from "../../core/menuMode";
+import { gameArtSrc } from "../../core/gameArt";
 import { wordImageSrc } from "../../core/wordImage";
 import {
   createDayRoutineBoard,
@@ -66,6 +67,10 @@ const questionText = computed(() =>
 const remainingChoices = computed(() =>
   board.choices.filter((item) => !placedItemIds.value.includes(item.id)),
 );
+
+function itemImageSrc(item: DayRoutineItem) {
+  return item.artId ? gameArtSrc(item.artId) : wordImageSrc(item.imageId);
+}
 
 function itemTargetId(item: DayRoutineItem) {
   return `day-routine:choice:${item.id}`;
@@ -288,11 +293,7 @@ watch(isSpeaking, (speaking) => {
                       rounded="lg"
                       variant="elevated"
                     >
-                      <v-img
-                        class="placed-image"
-                        :src="wordImageSrc(item.imageId)"
-                        :alt="item.label"
-                      />
+                      <v-img class="placed-image" :src="itemImageSrc(item)" :alt="item.label" />
                       <div class="placed-label text-subtitle-2 font-weight-bold">
                         {{ item.label }}
                       </div>
@@ -326,11 +327,7 @@ watch(isSpeaking, (speaking) => {
                   @select="choose(item)"
                 >
                   <template #default>
-                    <v-img
-                      class="choice-image"
-                      :src="wordImageSrc(item.imageId)"
-                      :alt="item.label"
-                    />
+                    <v-img class="choice-image" :src="itemImageSrc(item)" :alt="item.label" />
                     <div class="choice-label text-subtitle-1 text-md-h6 font-weight-bold mt-2">
                       {{ item.label }}
                     </div>
@@ -384,7 +381,7 @@ watch(isSpeaking, (speaking) => {
 }
 
 .choice-image {
-  block-size: clamp(3.5rem, 7vw, 5rem);
+  block-size: clamp(4.5rem, 8vw, 7rem);
   inline-size: 100%;
 }
 

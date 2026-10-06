@@ -8,6 +8,8 @@ export type SandwichChoice = {
   shortLabel: string;
   kind: SandwichChoiceKind;
   imageId?: string;
+  /** Picture drawn for this game, see core/gameArt.ts. */
+  artId?: string;
   emoji: string;
   roleIcon?: string;
   ttsAssetId?: string;
@@ -34,6 +36,7 @@ export type SandwichRecipe = {
 
 const bottomBread: SandwichChoice = {
   id: "bottom-bread",
+  artId: "sandwich/bread",
   label: "Нижний хлеб",
   shortLabel: "нижний хлеб",
   kind: "bread",
@@ -46,6 +49,7 @@ const bottomBread: SandwichChoice = {
 
 const topBread: SandwichChoice = {
   id: "top-bread",
+  artId: "sandwich/bread",
   label: "Верхний хлеб",
   shortLabel: "верхний хлеб",
   kind: "top-bread",
@@ -58,6 +62,7 @@ const topBread: SandwichChoice = {
 
 const butter: SandwichChoice = {
   id: "butter",
+  artId: "sandwich/butter",
   label: "Масло",
   shortLabel: "масло",
   kind: "spread",
@@ -67,6 +72,7 @@ const butter: SandwichChoice = {
 
 const cheese: SandwichChoice = {
   id: "cheese",
+  artId: "sandwich/cheese",
   label: "Сыр",
   shortLabel: "сыр",
   kind: "filling",
@@ -78,6 +84,7 @@ const cheese: SandwichChoice = {
 
 const lettuce: SandwichChoice = {
   id: "lettuce",
+  artId: "sandwich/lettuce",
   label: "Лист салата",
   shortLabel: "салат",
   kind: "vegetable",
@@ -88,6 +95,7 @@ const lettuce: SandwichChoice = {
 
 const tomato: SandwichChoice = {
   id: "tomato",
+  artId: "sandwich/tomato",
   label: "Помидор",
   shortLabel: "помидор",
   kind: "vegetable",

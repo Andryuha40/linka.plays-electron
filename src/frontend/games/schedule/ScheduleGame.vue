@@ -220,6 +220,7 @@ onUnmounted(() => {
               <div class="current-step-image">
                 <GameWordImage
                   :word-id="nextStep.imageId"
+                  :art-id="nextStep.artId"
                   :word="nextStep.title"
                   :emoji="nextStep.emoji"
                 />
@@ -252,6 +253,7 @@ onUnmounted(() => {
                   <GameWordImage
                     class="slot-image"
                     :word-id="step.imageId"
+                    :art-id="step.artId"
                     :word="step.title"
                     :emoji="step.emoji"
                     decorative
@@ -287,6 +289,7 @@ onUnmounted(() => {
                       <div class="choice-image" :style="{ backgroundColor: card.color }">
                         <GameWordImage
                           :word-id="card.imageId"
+                          :art-id="card.artId"
                           :word="card.title"
                           :emoji="card.emoji"
                         />

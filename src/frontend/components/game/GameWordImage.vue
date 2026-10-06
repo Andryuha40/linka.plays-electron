@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
+import { gameArtSrc } from "../../core/gameArt";
 import { wordImageSrc } from "../../core/wordImage";
 
 const props = withDefaults(
   defineProps<{
-    wordId: string;
+    wordId?: string;
+    /** Game-specific picture, tried before the shared word picture. */
+    artId?: string;
     word: string;
     emoji: string;
     decorative?: boolean;
@@ -14,25 +17,31 @@ const props = withDefaults(
   },
 );
 
-const failed = ref(false);
+// Sources in order of preference; a failed image moves on to the next one and
+// the emoji is the last resort.
+const sources = computed(() => {
+  const list: string[] = [];
+  if (props.artId) list.push(gameArtSrc(props.artId));
+  if (props.wordId) list.push(wordImageSrc(props.wordId));
+  return list;
+});
+const sourceIndex = ref(0);
+const currentSrc = computed(() => sources.value[sourceIndex.value]);
 
-watch(
-  () => props.wordId,
-  () => {
-    failed.value = false;
-  },
-);
+watch(sources, () => {
+  sourceIndex.value = 0;
+});
 </script>
 
 <template>
   <span class="game-word-image" :aria-hidden="decorative || undefined">
     <img
-      v-if="!failed"
+      v-if="currentSrc"
       class="game-word-image__asset"
-      :src="wordImageSrc(wordId)"
+      :src="currentSrc"
       :alt="decorative ? '' : word"
       draggable="false"
-      @error="failed = true"
+      @error="sourceIndex += 1"
     />
     <span
       v-else

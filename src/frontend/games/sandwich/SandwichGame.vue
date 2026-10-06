@@ -322,8 +322,9 @@ watch(
               >
                 <div class="recipe-step-visual">
                   <GameWordImage
-                    v-if="ingredient.imageId"
+                    v-if="ingredient.artId || ingredient.imageId"
                     :word-id="ingredient.imageId"
+                    :art-id="ingredient.artId"
                     :word="ingredient.label"
                     :emoji="ingredient.emoji"
                     decorative
@@ -354,8 +355,9 @@ watch(
                   :style="{ backgroundColor: currentStep.choice.color }"
                 >
                   <GameWordImage
-                    v-if="currentStep.choice.imageId"
+                    v-if="currentStep.choice.artId || currentStep.choice.imageId"
                     :word-id="currentStep.choice.imageId"
+                    :art-id="currentStep.choice.artId"
                     :word="currentStep.choice.label"
                     :emoji="currentStep.choice.emoji"
                     decorative
@@ -406,9 +408,10 @@ watch(
                       :style="{ background: layer.choice.color }"
                     >
                       <GameWordImage
-                        v-if="layer.choice.imageId"
+                        v-if="layer.choice.artId || layer.choice.imageId"
                         class="layer-image mr-2"
                         :word-id="layer.choice.imageId"
+                        :art-id="layer.choice.artId"
                         :word="layer.choice.label"
                         :emoji="layer.choice.emoji"
                         decorative
@@ -450,8 +453,9 @@ watch(
                     <div class="ingredient-content">
                       <div class="choice-visual" :style="{ backgroundColor: choice.color }">
                         <GameWordImage
-                          v-if="choice.imageId"
+                          v-if="choice.artId || choice.imageId"
                           :word-id="choice.imageId"
+                          :art-id="choice.artId"
                           :word="choice.label"
                           :emoji="choice.emoji"
                           decorative
