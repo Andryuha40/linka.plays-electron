@@ -271,7 +271,7 @@ onUnmounted(() => {
               {{ feedback }}
             </v-alert>
 
-            <v-row class="coin-row" dense>
+            <v-row class="coin-row" no-gutters>
               <v-col v-for="coin in selectedCoinCounts" :key="coin.value" cols="12" sm="4">
                 <GameDwellButton
                   :target-id="coinTargetId(coin.value)"
@@ -306,7 +306,7 @@ onUnmounted(() => {
               </v-col>
             </v-row>
 
-            <v-row class="action-row mt-2" dense>
+            <v-row class="action-row" no-gutters>
               <v-col cols="12" sm="5">
                 <GameDwellButton
                   :target-id="actionTargetId('clear')"
@@ -427,13 +427,23 @@ onUnmounted(() => {
   min-block-size: 3.25rem;
 }
 
+/* Gap between neighbouring gaze targets: with dense rows the coins and the
+   action buttons sat 8px apart and the gaze dot fired the neighbour. */
 .coin-row,
 .action-row {
-  row-gap: clamp(0.5rem, 1.4vh, 0.75rem);
+  --target-gap: clamp(1.75rem, 3vmin, 2.5rem);
+
+  row-gap: var(--target-gap);
+  margin-inline: calc(var(--target-gap) / -2);
+}
+
+.v-row.coin-row > [class*="v-col"],
+.v-row.action-row > [class*="v-col"] {
+  padding-inline: calc(var(--target-gap) / 2);
 }
 
 .action-row {
-  margin-block-start: clamp(0.5rem, 1.4vh, 0.75rem) !important;
+  margin-block-start: var(--target-gap) !important;
 }
 
 .coin-card .v-alert {

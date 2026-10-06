@@ -375,7 +375,7 @@ onUnmounted(() => {
             </v-alert>
 
             <template v-if="round.taskKind === 'shopping-list'">
-              <v-row class="choice-row" dense>
+              <v-row class="choice-row" no-gutters>
                 <v-col
                   v-for="item in round.choices"
                   :key="item.id"
@@ -511,7 +511,7 @@ onUnmounted(() => {
                 </div>
               </v-sheet>
 
-              <v-row class="coin-row" dense>
+              <v-row class="coin-row" no-gutters>
                 <v-col v-for="coin in selectedCoinCounts" :key="coin.value" cols="12" sm="4">
                   <GameDwellButton
                     :target-id="coinTargetId(coin.value)"
@@ -546,7 +546,7 @@ onUnmounted(() => {
                 </v-col>
               </v-row>
 
-              <v-row class="action-row mt-2" dense>
+              <v-row class="action-row" no-gutters>
                 <v-col cols="12" sm="5">
                   <GameDwellButton
                     :target-id="actionTargetId('clear')"
@@ -632,10 +632,25 @@ onUnmounted(() => {
   margin-block-end: clamp(0.5rem, 1.1vh, 1rem) !important;
 }
 
+/* Gap between neighbouring gaze targets: with dense rows the coins and the
+   action buttons sat 8px apart and the gaze dot fired the neighbour. */
 .choice-row,
 .coin-row,
 .action-row {
-  row-gap: 0.75rem;
+  --target-gap: clamp(1.75rem, 3vmin, 2.5rem);
+
+  row-gap: var(--target-gap);
+  margin-inline: calc(var(--target-gap) / -2);
+}
+
+.v-row.choice-row > [class*="v-col"],
+.v-row.coin-row > [class*="v-col"],
+.v-row.action-row > [class*="v-col"] {
+  padding-inline: calc(var(--target-gap) / 2);
+}
+
+.action-row {
+  margin-block-start: var(--target-gap);
 }
 
 .item-card,

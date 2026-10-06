@@ -49,7 +49,9 @@ const answer = ref("");
 const feedback = ref("Введи ответ и нажми галочку.");
 const isSpeaking = ref(false);
 const resultVisible = computed(() => session.status === "finished");
-const keys = ["1", "2", "3", "⌫", "4", "5", "6", "0", "7", "8", "9", "✓"];
+// Digits in two rows, erase and confirm on their own row: in a 4×3 pad the
+// confirm key sat right under "0" and the gaze dot kept typing a zero.
+const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "⌫", "✓"];
 
 function keyTargetId(key: string) {
   if (key === "⌫") return "math-actions:key:backspace";
@@ -179,8 +181,8 @@ onUnmounted(() => {
             </v-alert>
             <GameSquareChoiceGrid
               :items="keys"
-              :columns="4"
-              grid-offset="14.5rem"
+              :columns="5"
+              grid-offset="21rem"
               min-size="5.5rem"
               max-size="10.5rem"
               compact-size="5rem"
