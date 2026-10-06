@@ -16,6 +16,8 @@ export type DayRoutineItem = {
   id: string;
   label: string;
   imageId: string;
+  /** Picture drawn for this game, see core/gameArt.ts. */
+  artId?: string;
   periodId: DayRoutinePeriodId;
   hint: string;
 };
@@ -79,6 +81,7 @@ export const dayRoutinePeriods: DayRoutinePeriod[] = [
 export const dayRoutineItems: DayRoutineItem[] = [
   {
     id: "wake-up",
+    artId: "day-routine/wake-up",
     label: "проснуться",
     imageId: "clock",
     periodId: "morning",
@@ -86,6 +89,7 @@ export const dayRoutineItems: DayRoutineItem[] = [
   },
   {
     id: "wash-face",
+    artId: "day-routine/wash-face",
     label: "умыться",
     imageId: "soap",
     periodId: "morning",
@@ -93,6 +97,7 @@ export const dayRoutineItems: DayRoutineItem[] = [
   },
   {
     id: "breakfast",
+    artId: "day-routine/breakfast",
     label: "завтрак",
     imageId: "porridge",
     periodId: "morning",
@@ -100,6 +105,7 @@ export const dayRoutineItems: DayRoutineItem[] = [
   },
   {
     id: "play",
+    artId: "day-routine/play",
     label: "играть",
     imageId: "toy",
     periodId: "day",
@@ -107,6 +113,7 @@ export const dayRoutineItems: DayRoutineItem[] = [
   },
   {
     id: "walk",
+    artId: "day-routine/walk",
     label: "гулять",
     imageId: "tree",
     periodId: "day",
@@ -114,6 +121,7 @@ export const dayRoutineItems: DayRoutineItem[] = [
   },
   {
     id: "lunch",
+    artId: "day-routine/lunch",
     label: "обед",
     imageId: "soup",
     periodId: "day",
@@ -121,6 +129,7 @@ export const dayRoutineItems: DayRoutineItem[] = [
   },
   {
     id: "dinner",
+    artId: "day-routine/dinner",
     label: "ужин",
     imageId: "plate",
     periodId: "evening",
@@ -128,6 +137,7 @@ export const dayRoutineItems: DayRoutineItem[] = [
   },
   {
     id: "sleep",
+    artId: "day-routine/sleep",
     label: "спать",
     imageId: "bed",
     periodId: "evening",

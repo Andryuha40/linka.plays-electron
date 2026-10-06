@@ -3,6 +3,8 @@ export type ScheduleCard = {
   title: string;
   aacLabel: string;
   imageId: string;
+  /** Picture drawn for this game, see core/gameArt.ts. */
+  artId?: string;
   emoji: string;
   color: string;
   hint: string;
@@ -13,6 +15,7 @@ export const scheduleMaxSteps = 8;
 export const dailyScheduleSteps: ScheduleCard[] = [
   {
     id: "wake",
+    artId: "schedule/wake",
     title: "Проснуться",
     aacLabel: "утро",
     imageId: "clock",
@@ -22,6 +25,7 @@ export const dailyScheduleSteps: ScheduleCard[] = [
   },
   {
     id: "wash",
+    artId: "schedule/wash",
     title: "Умыться",
     aacLabel: "умыться",
     imageId: "soap",
@@ -31,6 +35,7 @@ export const dailyScheduleSteps: ScheduleCard[] = [
   },
   {
     id: "breakfast",
+    artId: "schedule/breakfast",
     title: "Завтрак",
     aacLabel: "есть",
     imageId: "porridge",
@@ -40,6 +45,7 @@ export const dailyScheduleSteps: ScheduleCard[] = [
   },
   {
     id: "dress",
+    artId: "schedule/dress",
     title: "Одеться",
     aacLabel: "одежда",
     imageId: "shirt",
@@ -49,6 +55,7 @@ export const dailyScheduleSteps: ScheduleCard[] = [
   },
   {
     id: "therapy",
+    artId: "schedule/therapy",
     title: "Занятие",
     aacLabel: "занятие",
     imageId: "book",
@@ -58,6 +65,7 @@ export const dailyScheduleSteps: ScheduleCard[] = [
   },
   {
     id: "lunch",
+    artId: "schedule/lunch",
     title: "Обед",
     aacLabel: "обед",
     imageId: "soup",
@@ -67,6 +75,7 @@ export const dailyScheduleSteps: ScheduleCard[] = [
   },
   {
     id: "play",
+    artId: "schedule/play",
     title: "Игра",
     aacLabel: "играть",
     imageId: "toy",
@@ -76,6 +85,7 @@ export const dailyScheduleSteps: ScheduleCard[] = [
   },
   {
     id: "sleep",
+    artId: "schedule/sleep",
     title: "Сон",
     aacLabel: "спать",
     imageId: "bed",
